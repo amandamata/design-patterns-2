@@ -1,5 +1,5 @@
-﻿using System.Data;
-using System.Data.SqlClient;
+﻿using DesignPatterns2.Cap1;
+using System.Data;
 
 namespace DesignPatterns2
 {
@@ -7,9 +7,7 @@ namespace DesignPatterns2
     {
         static void Main(string[] args)
         {
-            IDbConnection connection = new SqlConnection();
-            connection.ConnectionString = "User Id=root;Password=;Server=localhost;Database=myDB";
-            connection.Open();
+            IDbConnection connection = new ConnectionFactory().GetConnection();
             IDbCommand command = connection.CreateCommand();
             command.CommandText = "select * from table";
         }
