@@ -1,17 +1,24 @@
-﻿namespace DesignPatterns2.Cap4
+﻿using DesignPatterns2.Cap5;
+
+namespace DesignPatterns2.Cap4
 {
-    class Num : IExpression
+    public class Num : IExpression
     {
-        private readonly int _num;
+        public int Value { get; private set; }
 
         public Num(int num)
         {
-            _num = num;
+            Value = num;
         }
 
         public int Avaliate()
         {
-            return _num;
+            return Value;
+        }
+
+        public void Accept(IPrinterVisitor printer)
+        {
+            printer.PrintNumber(this);
         }
     }
 }

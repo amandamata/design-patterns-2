@@ -1,5 +1,6 @@
 ﻿using DesignPatterns2.Cap3;
 using DesignPatterns2.Cap4;
+using DesignPatterns2.Cap5;
 using System;
 using System.Linq.Expressions;
 using Contract = DesignPatterns2.Cap3.Contract;
@@ -48,6 +49,9 @@ namespace DesignPatterns2
             Func<int> interpreter = Expression.Lambda<Func<int>>(sum2).Compile();
             int result = interpreter();
             Console.WriteLine(result);
+
+            PrinterVisitor printer = new PrinterVisitor();
+            sum.Accept(printer);
         }
     }
 }
