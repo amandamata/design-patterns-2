@@ -4,6 +4,7 @@ using DesignPatterns2.Cap5;
 using DesignPatterns2.Cap6;
 using DesignPatterns2.Cap7;
 using DesignPatterns2.Cap8;
+using DesignPatterns2.Cap9;
 using System;
 using System.IO;
 using System.Linq.Expressions;
@@ -73,13 +74,17 @@ namespace DesignPatterns2
             //queue.Process();
 
 
-            Client client = new Client();
-            client.Name = "Amanda";
-            client.Address = "Campos Salles";
-            client.BirthDate = DateTime.Now;
+            //Client client = new Client();
+            //client.Name = "Amanda";
+            //client.Address = "Campos Salles";
+            //client.BirthDate = DateTime.Now;
 
-            String json = new JsonGenerator().Json(client);
-            Console.WriteLine(json);
+            //String json = new JsonGenerator().Json(client);
+            //Console.WriteLine(json);
+
+            FacadeCompany facadeCompany = new CompanyFacadeSingleton().Instance;
+            Client client = facadeCompany.GetClient("cpf");
+            var invoice = facadeCompany.CreateInvoice(client, 500);
         }
     }
 }
