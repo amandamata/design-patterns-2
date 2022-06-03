@@ -2,6 +2,7 @@
 using DesignPatterns2.Cap4;
 using DesignPatterns2.Cap5;
 using DesignPatterns2.Cap6;
+using DesignPatterns2.Cap7;
 using System;
 using System.Linq.Expressions;
 using Contract = DesignPatterns2.Cap3.Contract;
@@ -54,10 +55,20 @@ namespace DesignPatterns2
             //PrinterVisitor printer = new PrinterVisitor();
             //sum.Accept(printer);
 
-            IMessage message = new ClientMessage("amanda");
-            ISender sender = new SmsSender();
-            message.Sender = sender;
-            message.Send();
+            //IMessage message = new ClientMessage("amanda");
+            //ISender sender = new SmsSender();
+            //message.Sender = sender;
+            //message.Send();
+
+            Queue queue = new Queue();
+            Order order1 = new Order("Amanda", 10);
+            Order order2 = new Order("Mauricio ", 200);
+
+            queue.Add(new PayOrder(order1));
+            queue.Add(new PayOrder(order2));
+            queue.Add(new EndOrder(order2));
+
+            queue.Process();
         }
     }
 }
