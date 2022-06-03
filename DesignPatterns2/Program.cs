@@ -3,8 +3,11 @@ using DesignPatterns2.Cap4;
 using DesignPatterns2.Cap5;
 using DesignPatterns2.Cap6;
 using DesignPatterns2.Cap7;
+using DesignPatterns2.Cap8;
 using System;
+using System.IO;
 using System.Linq.Expressions;
+using System.Text.Json;
 using Contract = DesignPatterns2.Cap3.Contract;
 
 namespace DesignPatterns2
@@ -60,15 +63,23 @@ namespace DesignPatterns2
             //message.Sender = sender;
             //message.Send();
 
-            Queue queue = new Queue();
-            Order order1 = new Order("Amanda", 10);
-            Order order2 = new Order("Mauricio ", 200);
+            //Queue queue = new Queue();
+            //Order order1 = new Order("Amanda", 10);
+            //Order order2 = new Order("Mauricio ", 200);
 
-            queue.Add(new PayOrder(order1));
-            queue.Add(new PayOrder(order2));
-            queue.Add(new EndOrder(order2));
+            //queue.Add(new PayOrder(order1));
+            //queue.Add(new PayOrder(order2));
+            //queue.Add(new EndOrder(order2));
+            //queue.Process();
 
-            queue.Process();
+
+            Client client = new Client();
+            client.Name = "Amanda";
+            client.Address = "Campos Salles";
+            client.BirthDate = DateTime.Now;
+
+            String json = new JsonGenerator().Json(client);
+            Console.WriteLine(json);
         }
     }
 }
